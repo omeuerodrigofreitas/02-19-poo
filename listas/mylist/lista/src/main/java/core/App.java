@@ -1,7 +1,10 @@
 package core;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import core.model.BaseClass;
 import core.model.Item;
 import core.model.Pedido;
 
@@ -12,6 +15,8 @@ import core.model.Pedido;
 public class App 
 {
     public static void main( String[] args ) {
+
+        List<Pedido> pedidos = new ArrayList<>();
 
         Pedido pedido1 = new Pedido();
         Pedido pedido2 = new Pedido();
@@ -44,36 +49,36 @@ public class App
         item5.setNome("fone de ouvido");
         item5.setValor(BigDecimal.valueOf(80L));
 
+        //pedido 1
         pedido1.setId(1L);
         pedido1.setNomeCliente("Seu Lucas");
         pedido1.adicionarItem(item1);
         pedido1.adicionarItem(item5);
 
+        //pedodo 2
+        pedido2.setId(2L);
+        pedido2.setNomeCliente("Arthur");
+        pedido2.adicionarItem(item1);
+        pedido2.adicionarItem(item2);
+        pedido2.adicionarItem(item3);
 
-        System.out.println("O pedido do "
-        + pedido1.getNomeCliente() + 
-        " tem os seguintes itens: ");
-        BigDecimal valorTotal = BigDecimal.ZERO;
-        for (Item item : pedido1.getItens()) {
-            
-            System.out.println("Item: " + item.getNome() +
-            "Valor: " + item.getValor());
+        //vamos adicionar a lista de pedidos os pedidos que temos
+        pedidos.add(pedido1);
+        pedidos.add(pedido2);
 
-           valorTotal = valorTotal.add(item.getValor());
-            
+
+        for(Pedido pedido : pedidos) {
+            System.out.println("O pedido do senhor: "
+                    + pedido.getNomeCliente()
+                    + " tem os seguintes itens: ");
+            for(Item item : pedido.getItens()) {
+                System.out.println("Item: "
+                        + item.getNome());
+            }
+            System.out.println(pedido.calcularValorTotalPedido());
+
         }
 
-        System.out.println("Valor total do pedido: " + 
-        pedido1.valorTotalPedido());
 
-
-        //extra aprendendo static
-        System.out.println(Pedido.CNPJ);
-
-
-
-
-        
-       
     }
 }

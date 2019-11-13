@@ -2,15 +2,11 @@ package core.model;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class Item extends BaseClass {
 
-    private Long id;
     private String nome;
     private BigDecimal valor;
 
-    public Long getId() {
-        return id;
-    }
 
     public BigDecimal getValor() {
         return valor;
@@ -26,10 +22,6 @@ public class Item {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
 
